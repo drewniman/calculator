@@ -26,11 +26,44 @@ let operator;
 let displayVal = '';
 
 // Display functions
+const display = document.querySelector('.display');
 function addToDisplay(e) {
-    console.log(e);
-    console.log(e.target.innerText);
+    displayVal = displayVal.concat(e.target.innerText);
+    display.textContent = displayVal;
 }
 
-const displayButtons = document.querySelectorAll('.number, .operator');
-console.log(displayButtons);
+const displayButtons = document.querySelectorAll('.number');
 displayButtons.forEach(button => button.addEventListener('click', addToDisplay));
+
+function setOperator(e) {
+    // Three cases
+    if (!num1 && displayVal === '') {
+        // 1. num1 and displayVal empty
+        console.log('Case 1');
+        return;
+    } else if (!num1) {
+        // 2. displayVal full, num1 empty
+        console.log('Case 2');
+        num1 = Number(displayVal);
+        operator = e.target.innerText;
+        displayVal = '';
+    } else {
+        // 3. num1 and displayVal full
+        console.log('Case 3');
+        // Perform operation
+        num2 = Number(displayVal);
+        let result = operate(operator, num1, num2);
+        console.log(result);
+        // Put result into num1
+        num1 = result;
+        num2 = null;
+        // Update operator
+        operator = e.target.innerText;
+        // Display result
+        display.textContent = String(result);
+        displayVal = '';
+    }
+}
+
+const operatorButtons = document.querySelectorAll('.operator');
+operatorButtons.forEach(button => button.addEventListener('click', setOperator));
