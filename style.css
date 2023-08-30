@@ -1,0 +1,50 @@
+.calculator {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: aliceblue;
+    height: 600px;
+    width: 500px;
+    gap: 20px;
+}
+
+.display {
+    height: 60px;
+    background-color:white;
+}
+
+.body {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+}
+
+.numpad {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
+
+.button {
+    flex: 1;
+    background-color: bisque;
+}
+
+.operators {
+    display: flex;
+    flex: .3;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.operators div {
+    flex: 1;
+    background-color: bisque;
+}

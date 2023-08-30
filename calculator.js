@@ -23,3 +23,14 @@ function operate(operator, num1, num2) {
 let num1;
 let num2;
 let operator;
+let displayVal = '';
+
+// Display functions
+function addToDisplay(e) {
+    console.log(e);
+    console.log(e.target.innerText);
+}
+
+const displayButtons = document.querySelectorAll('.number, .operator');
+console.log(displayButtons);
+displayButtons.forEach(button => button.addEventListener('click', addToDisplay));
