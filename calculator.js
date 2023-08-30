@@ -52,7 +52,15 @@ function setOperator(e) {
         console.log('Case 3');
         // Perform operation
         num2 = Number(displayVal);
-        let result = operate(operator, num1, num2);
+
+        // Check for divide by zero
+        if (operator === '/' && num2 === 0) {
+            alert('Illegal operation');
+            clear();
+            return;
+        }
+        
+        let result = Math.round(operate(operator, num1, num2) * 1000000) / 1000000;
         console.log(result);
         // Put result into num1
         num1 = result;
@@ -67,3 +75,36 @@ function setOperator(e) {
 
 const operatorButtons = document.querySelectorAll('.operator');
 operatorButtons.forEach(button => button.addEventListener('click', setOperator));
+
+function equals(e) {
+    if (num1 && operator && displayVal !== '') {
+        num2 = Number(displayVal);
+
+        // Check for divide by zero
+        if (operator === '/' && num2 === 0) {
+            alert('Illegal operation');
+            clear();
+            return;
+        }
+        
+        let result = Math.round(operate(operator, num1, num2) * 1000000) / 1000000;
+        displayVal = String(result);
+        display.textContent = displayVal;
+        num1 = null;
+        num2 = null;
+    }
+}
+
+const equalsButton = document.querySelector('.equals');
+equalsButton.addEventListener('click', equals);
+
+function clear(e) {
+    num1 = null;
+    num2 = null;
+    operator = null;
+    displayVal = '';
+    display.textContent = '';
+}
+
+const clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', clear);
